@@ -12,7 +12,8 @@ import androidx.sqlite.db.SupportSQLiteOpenHelper;
 import com.example.myapplication.models.dbEntities.ToDoItem;
 
 import org.jetbrains.annotations.NotNull;
-//@Databese(entities={ToDoItem.class},version=3)
+
+@Databese(entities={ToDoItem.class},version=3)
 public abstract class ToDoDataBase extends RoomDataBase {
 
     public abstract ToDoDAO toDoDAO();

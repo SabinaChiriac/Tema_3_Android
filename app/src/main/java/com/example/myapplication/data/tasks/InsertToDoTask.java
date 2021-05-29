@@ -10,7 +10,7 @@ public class InsertToDoTask extends AsyncTask<ToDoItem,Void,Void> {
     private ToDoDataBase toDoDataBase;
     private ToDoRepository.OnSuccesListener listener;
 
-    public InsertToDoTask(ToDoDataBase toDoDataBase, ToDoRepository.OnSuccesListener listener){
+    public InsertToDoTask(ToDoDataBase toDoDataBase, ToDoRepository.OnSuccesListener listener) {
         this.toDoDataBase = toDoDataBase;
         this.listener = listener;
     }
@@ -26,3 +26,4 @@ public class InsertToDoTask extends AsyncTask<ToDoItem,Void,Void> {
         super.onPostExecute(aVoid);
         listener.onSuccess();
     }
+}

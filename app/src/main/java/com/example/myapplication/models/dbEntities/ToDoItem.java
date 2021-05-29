@@ -1,8 +1,8 @@
 package com.example.myapplication.models.dbEntities;
 
-import androix.room.ColumnInfo;
-import androix.room.Entity;
-import androix.room.PrimaryKey;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity
 public class ToDoItem {
@@ -10,7 +10,7 @@ public class ToDoItem {
     public int id;
     @ColumnInfo(name = "title")
     public String title;
-    @ColumnInfo(author="author")
+    @ColumnInfo(name="author")
     public String author;
     @ColumnInfo(name = "description")
     public String description;

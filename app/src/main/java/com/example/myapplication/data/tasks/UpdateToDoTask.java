@@ -26,4 +26,4 @@ public class UpdateToDoTask extends AsyncTask<ToDoItem,Void,Void> {
         super.onPostExecute(aVoid);
         listener.onSuccess();
     }
-}}
+}

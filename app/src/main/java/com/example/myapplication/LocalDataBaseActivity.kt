@@ -22,7 +22,7 @@ class LocalDataBaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_local_data_base2)
+        setContentView(R.layout.activity_local_data_base)
         setupViews()
     }
     fun setupViews() {
@@ -31,10 +31,8 @@ class LocalDataBaseActivity : AppCompatActivity() {
         button?.setOnClickListener {
             insertToDo()
         }
-        findViewById<Button>(R.id.button_get).setOnClickListener {
-            getToDos()
-        }
-        findViewById<Button>(R.id.button_delete).setOnClickListener {
+
+        findViewById<Button>(R.id.button_data).setOnClickListener {
             deleteByTitleItem()
         }
         progressBar = findViewById(R.id.pb_loading)
@@ -60,12 +58,14 @@ class LocalDataBaseActivity : AppCompatActivity() {
     }
 
     fun updateItem(toDoItem: ToDoItem) {
-        toDoRepository.updateToDo(toDoItem, object : ToDoRepository.OnSuccesListener {
-            override fun onSuccess() {
-                "Succes".errorLog()
-                progressBar?.visibility = View.GONE
-            }
-        })
+        if (toDoItem.title != null && toDoItem.author != null) {
+            toDoRepository.updateToDo(toDoItem, object : ToDoRepository.OnSuccesListener {
+                override fun onSuccess() {
+                    "Succes".errorLog()
+                    progressBar?.visibility = View.GONE
+                }
+            })
+        }
     }
 
     fun deleteItem(toDoItem: ToDoItem) {

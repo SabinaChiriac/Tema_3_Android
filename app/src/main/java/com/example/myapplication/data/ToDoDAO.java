@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.liste.models.dbEntities.ToDoItem;
+import com.example.myapplication.models.dbEntities.ToDoItem;
 
 import java.util.List;
 

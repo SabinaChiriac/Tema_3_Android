@@ -1,11 +1,11 @@
 package com.example.myapplication.data;
-import com.example.liste.ApplicationController;
-import com.example.liste.data.tasks.DeleteByTitleToDoTask;
-import com.example.liste.data.tasks.DeleteToDoTask;
-import com.example.liste.data.tasks.GetAllToDosTask;
-import com.example.liste.data.tasks.InsertToDoTask;
-import com.example.liste.data.tasks.UpdateToDoTask;
-import com.example.liste.models.dbEntities.ToDoItem;
+import com.example.myapplication.ApplicationController;
+import com.example.myapplication.data.tasks.DeleteByTitleToDoTask;
+import com.example.myapplication.data.tasks.DeleteToDoTask;
+import com.example.myapplication.data.tasks.GetAllToDosTask;
+import com.example.myapplication.data.tasks.InsertToDoTask;
+import com.example.myapplication.data.tasks.UpdateToDoTask;
+import com.example.myapplication.models.dbEntities.ToDoItem;
 
 import java.util.List;
 

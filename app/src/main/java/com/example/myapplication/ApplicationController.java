@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.app.Application;
 import androidx.room.Room;
 import com.example.myapplication.data.ToDoDataBase;
+
 public class ApplicationController extends  Application{
 
     private  static ApplicationController instance;
@@ -16,7 +17,7 @@ public class ApplicationController extends  Application{
         setupDataBase();
     }
     private void setupDataBase(){
-        toDoDataBase=Room.dataBaseBuilder(
+        toDoDataBase=Room.databaseBuilder(
                 getApplicationContext(),
                 ToDoDataBase.class,
                 toDoDataBaseName).addMigrations(ToDoDataBase.MIGRATION_2_3).build();
