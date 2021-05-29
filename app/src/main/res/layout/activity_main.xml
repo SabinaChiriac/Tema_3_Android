@@ -7,11 +7,6 @@
     android:background="#9C6CF1"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:text="@string/add_delete" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

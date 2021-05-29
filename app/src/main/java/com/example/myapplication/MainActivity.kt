@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -13,6 +14,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+    }
+    fun goToLocalDataBaseActivity(){
+        val intent = Intent(this,LocalDataBaseActivity::class.java)
+        startActivity(intent)
     }
 
 }
