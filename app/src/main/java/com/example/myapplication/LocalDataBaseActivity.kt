@@ -8,26 +8,49 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
+import com.example.myapplication.adapters.ToDosAdapter
 import com.example.myapplication.data.ToDoRepository
 import com.example.myapplication.helpers.errorLog
 import com.example.myapplication.models.dbEntities.ToDoItem
+import com.example.myapplication.models.ToDoItemElemnt
 
 class LocalDataBaseActivity : AppCompatActivity() {
 
     private var button: Button? = null
-    private var editText: EditText? = null
+    private var editTextTitle: EditText? = null
+    private var editTextAuthor:EditText? =null
+    private var editTextDescription: EditText? =null
     private val toDoRepository = ToDoRepository()
     private var progressBar: ProgressBar? = null
+
+    private val todoList by lazy {
+        ArrayList<ToDoItemElemnt>()
+    }
+
+    private var todoAdapter: ToDosAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_local_data_base)
         setupViews()
     }
+    override fun onStart(){
+        super.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
     fun setupViews() {
+        setupRecyclerView()
+
         button = findViewById(R.id.button_data)
-        editText = findViewById(R.id.editable_text)
+        editTextTitle = findViewById(R.id.name)
+        editTextAuthor=findViewById(R.id.author)
+        editTextDescription=findViewById((R.id.description))
         button?.setOnClickListener {
             insertToDo()
         }
@@ -37,7 +60,16 @@ class LocalDataBaseActivity : AppCompatActivity() {
         }
         progressBar = findViewById(R.id.pb_loading)
     }
+    private fun setupRecyclerView(){
+        val recyclerView: RecyclerView = findViewById(R.id.todos)
+        val layoutManager: LinearLayoutManager =
+                LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        //val layoutManager: GridLayoutManager = GridLayoutManager(this, 2, RecyclerView.VERTICAL, true)
+        recyclerView.layoutManager = layoutManager
 
+        todoAdapter = ToDosAdapter(todoList)
+        recyclerView.adapter = todoAdapter
+}
 
     fun getToDos() {
         progressBar?.visibility = View.VISIBLE
@@ -75,7 +107,7 @@ class LocalDataBaseActivity : AppCompatActivity() {
     }
 
     fun deleteByTitleItem() {
-        val title = editText?.text?.toString() ?: return
+        val title = editTextTitle?.text?.toString() ?: return
         when (title.isEmpty()) {
             true -> return
         }
@@ -90,15 +122,34 @@ class LocalDataBaseActivity : AppCompatActivity() {
 
 
     fun insertToDo() {
-        val title = editText?.text?.toString() ?: return
+        val title = editTextTitle?.text?.toString() ?: return
         when (title.isEmpty()) {
-            true -> return
+            true -> {
+                editTextTitle?.error = getString(R.string.error_required)
+                return
+            }
+            false -> editTextTitle?.error = null
+        }
+        val author=editTextAuthor?.text?.toString() ?:return
+        when(author.isEmpty()){
+            true->{
+                editTextAuthor?.error=getString(R.string.error_required)
+                return
+            }
+            false->editTextAuthor?.error=null
         }
 
-        val toDoItem = ToDoItem(
-            title,
-            "descriere"
-        )
+        val description = editTextDescription?.text?.toString() ?: return
+        when (description.isEmpty()) {
+            true -> {
+                editTextDescription?.error = getString(R.string.error_required)
+                return
+            }
+
+            false -> editTextDescription?.error = null
+        }
+
+       val toDoItem= ToDoItem(title,author, description)
 
         toDoRepository.insertToDo(toDoItem) {
             Toast.makeText(

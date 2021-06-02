@@ -12,4 +12,5 @@
     <string name="title_activity_local_data_base">LocalDataBaseActivity</string>
     <string name="add_delete">ADD/DELETE</string>
     <string name="add">Add/Delete</string>
+    <string name="error_required">Required field!</string>
 </resources>
